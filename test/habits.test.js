@@ -57,4 +57,25 @@ describe('app routes', () => {
         });
       });
   });
+
+  it('gets a habit by id', async() => {
+    const habit = await Habit.create({ 
+      habit: 'somehabit',
+      description: 'somedescription',
+      user: 'someuser'
+    });
+    return request(app)
+      .get(`/api/v1/habits/${habit._id}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: habit._id.toString(),
+          habit: 'somehabit',
+          description: 'somedescription',
+          user: 'someuser',
+          createdAt: expect.any(String),
+          updatedAt: expect.any(String),
+          __v: 0
+        });
+      });
+  });
 });
