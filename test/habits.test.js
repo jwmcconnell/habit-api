@@ -6,6 +6,8 @@ const connect = require('../lib/utils/connect');
 const mongoose = require('mongoose');
 const Habit = require('../lib/models/Habit');
 
+jest.mock('../lib/middleware/ensure-auth.js');
+
 describe('app routes', () => {
   beforeAll(() => {
     connect();
